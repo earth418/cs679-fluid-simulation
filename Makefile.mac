@@ -1,0 +1,15 @@
+CC         = g++
+EXECUTABLE = HW4
+CFLAGS     = -c -Wall -DUSING_OSX -O3
+
+SOURCES    = HW4.cpp FIELD_2D.cpp FLUID_2D.cpp FLUID_2D_PERIODIC.cpp FLUID_2D_BOUNDED.cpp
+OBJECTS    = $(SOURCES:.cpp=.o)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) -framework GLUT -framework OpenGL -framework Cocoa -DUSING_OSX $(OBJECTS) -o $(EXECUTABLE)
+
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm -rf *.o $(EXECUTABLE)
